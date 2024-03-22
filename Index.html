@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/main.js" defer></script>
+    <script src="js/time&song.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+          <div class="container">
+            <div class="nav-content">
+              <img src="images/logo.jpg" alt="#" />
+              <ul class="header-list">
+                <li class="item__header-list">COD</li>
+                <li class="item__header-list">SS</li>
+                <li class="item__header-list">SCRIPTS</li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="main">
+        <div class="container">
+          <div class="special-information container-main">
+            <!--COD  -->
+            <div class="cod-information">
+              <div class="title__special-information">
+                <h1 style="font-size: 36px">Информация COD:</h1>
+                <div class="moscow-time"></div>
+              </div>
+
+              <br />
+              <ul class="list__special-info">
+                <li class="item__special-info">
+                  <h2 class="title__special-info" onclick="showInfo(this)">
+                    - Форма <span class="arrow-down"></span>
+                  </h2>
+                  <div class="special-info none">
+                    <div class="rule">
+                      <div>
+                        <p>
+                          В теге form проверяем <strong>action и method</strong
+                          ><br /><br />
+                          <span class="word-break">
+                            action="../~@replacingTheContentsThis_successful"
+                          </span>
+                          <br />
+                          <span class="word-break">method="POST"</span>
+                          <br /><br />
+                          Кнопка в формах должна быть только тегом
+                          &lt;button&gt; и ничем другим! <br />
+                          В теге &lt;button&gt; проверяем атрибут type="submit"
+                        </p>
+                        <div class="images-rule">
+                          <img
+                            onclick="showImg(this)"
+                            class="img-rule"
+                            src="images/form.png"
+                            alt="#"
+                          />
+                          <img
+                            onclick="showImg(this)"
+                            class="img-rule"
+                            src="images/form2.png"
+                            alt="#"
+                          />
+                        </div>
+                      </div>
+                      <hr />
+                      <div>
+                        <p></p>
+                        <div class="buttons-rule">
+                          <button
+                            onclick='copyText(`action="../~@replacingTheContentsThis_successful" method="POST"`, this)'
+                            class="btn-getInfo"
+                          >
+                            Получить
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="item__special-info">
+                  <h2 class="title__special-info" onclick="showInfo(this)">
+                    - Инпуты <span class="arrow-down"></span>
+                  </h2>
+                  <div class="special-info none">
+                    <div class="rule">
+                      <div>
+                        <p>
+                          <strong
+                            >Должно быть 2 тега &lt;input&gt; для имени и
+                            телефона:</strong
+                          >
+                          <br /><br />
+                          1. &lt;input&gt; для имени должен содержать атрибуты
+                          <strong>required="required"</strong> и
+                          <strong>name="name"</strong> <br /><br />
+                          2. &lt;input&gt; для телефона должен содержать атрбуты
+                          <strong>required="required"</strong> и
+                          <strong>name="phone"</strong>
+                          <br /><br /><br />
+                          Также должна быть базовая валидация: <br />
+                          - в &lt;input name="name"&gt; должны вводиться только
+                          пробелы, а также буквы английского и языка гео <br />
+                          - в &lt;input name="phone"&gt; должны вводиться только
+                          цифры и символ +
+                          <br /><br /><br />
+                          Подключаем script для валидации: <br /><br />
+                          - в теге &lt;head&gt; подключаем jQuery по cdn: <br />
+                          <span class="word-break">
+                            &lt;script
+                            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;
+                          </span>
+                          <br /><br />
+                          - к &lt;input name=name&gt; добавляем класс class="ss"
+                          <br />
+                          к &lt;input name=phone&gt; добавляем класс
+                          class="pp"<br /><br />
+                          - перед коцом тега &lt;body&gt; вставляем script:
+                          <br /><br />
+                          <span style="color: rgb(56, 121, 218)">
+                            &lt;script&gt; <br />
+                            $(".ss").on('input', function(e){ <br />
+                            &nbsp;&nbsp;&nbsp;this.value =
+                            this.value.replace(/[^a-zA-ZáéíñóúüÁÉÍÑÓÚÜ\s.]/g,
+                            '');
+                            <br />
+                            });<br />
+                            $(".pp").on('input', function(e){ <br />
+                            &nbsp;&nbsp;&nbsp;this.value = "+" +
+                            this.value.replace(/[^0-9\.]/g, ''); <br />
+                            }); <br />
+                            &lt;/script&gt;
+                          </span>
+                          <br /><br />
+                          Где a-zA-ZáéíñóúüÁÉÍÑÓÚÜ это регулярное выражение,
+                          которое мы меняем в зависимости от гео. <br />
+                          Выражения можно запросить например у ChatGPT, часть
+                          можно найти по ссылке: <br />
+                          <a
+                            class="link"
+                            target="_blank"
+                            href="https://ru.stackoverflow.com/questions/440125/%D0%9A%D0%B0%D0%BA-%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C-%D0%B2%D1%81%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B-%D0%BD%D0%B5%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D0%BE%D0%B3%D0%BE-%D1%8F%D0%B7%D1%8B%D0%BA%D0%B0-%D0%B2-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D0%BE%D0%BC-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B8-%D0%95%D1%81%D1%82%D1%8C-%D0%BB%D0%B8-%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D1%8B%D0%B5"
+                            >stackoverflow</a
+                          >
+                        </p>
+                        <img
+                          onclick="showImg(this)"
+                          class="img-rule"
+                          src="images/inputs.png"
+                          alt="#"
+                        />
+                      </div>
+                      <hr />
+                      <div>
+                        <p></p>
+                        <div class="buttons-rule">
+                          <button
+                            onclick='copyText(` required="required" name="name" `, this)'
+                            class="btn-getInfo"
+                          >
+                            Получить Name
+                          </button>
+                          <button
+                            onclick='copyText(` required="required" name="phone" `, this)'
+                            class="btn-getInfo"
+                          >
+                            Получить Pnone
+                          </button>
+                          <button
+                            onclick="copyText(scriptValid, this)"
+                            class="btn-getInfo"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="item__special-info">
+                  <h2 class="title__special-info" onclick="showInfo(this)">
+                    - Ссылки <span class="arrow-down"></span>
+                  </h2>
+                  <div class="special-info none">
+                    <div class="rule">
+                      <div>
+                        <p>
+                          <strong
+                            >Тег &lt;a&gt; не должен содержать никаких
+                            ссылок!</strong
+                          >
+                          <br />
+                          <strong
+                            >Тег &lt;a&gt; не должен содержать атрибут
+                            target="_blank", таргеты убираем</strong
+                          >
+                          <br /><br />
+                          При работе с проклами на COD, все ссылки и кнопки
+                          должны вести к самой последней форме на прокле.
+                          <br /><br />
+                          Если такой скрол уже настроен - супер! Если нет,
+                          обычно вставляем script перед концом тега &lt;body&gt;
+                          :
+                          <br /><br />
+                          - Последнему тегу &lt;form&gt; присваиваем
+                          id="form-wrap" (если у формы уже есть id, можно перед
+                          формой создать тег span с атрибутом id="form-wrap")
+                          <br /><br />
+                          - в теге &lt;head&gt; подключаем jQuery по cdn: <br />
+                          <span class="word-break">
+                            &lt;script
+                            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"&gt;&lt;/script&gt;
+                          </span>
+                          <br /><br />
+                          - всем тегам <strong>&lt;a&gt;</strong> прописываем
+                          атрибут href="#form-wrap" <br /><br />
+                          - перед концом тега &lt;body&gt; вставляем script:
+                          <br /><br />
+                          <span style="color: rgb(56, 121, 218)">
+                            &lt;script&gt; <br />
+                            $('a').on('click', function(e) {
+                            <br />
+                            &nbsp;e.preventDefault(); <br />
+                            &nbsp;$('html, body').animate({ <br />
+                            &nbsp;&nbsp;&nbsp;scrollTop:
+                            &nbsp;$('#form-wrap').offset().top <br />
+                            &nbsp;}, 'slow'); <br />
+                            }) <br />
+                            &lt;/script&gt;
+                          </span>
+                          <br /><br />
+                          Где #form-wrap это место куда будет скролить страница.
+                          Соответсвтенно изменяя это значение в скрипте, мы
+                          можем подстроиться под уже существующий id у тега
+                          &lt;form&gt; или придумать свой (в тегах &lt;a&gt;,
+                          атрибут href нужно будет изменить на соответствующее
+                          значение)
+                        </p>
+                        <div class="images-rule">
+                          <img
+                            onclick="showImg(this)"
+                            class="img-rule"
+                            src="images/links1.png"
+                            alt="#"
+                          />
+                          <img
+                            onclick="showImg(this)"
+                            class="img-rule"
+                            src="images/links2.png"
+                            alt="#"
+                          />
+                        </div>
+                      </div>
+                      <hr />
+                      <div>
+                        <p></p>
+                        <div class="buttons-rule">
+                          <button
+                            onclick='copyText(`href="#form-wrap"`, this)'
+                            class="btn-getInfo"
+                          >
+                            Получить href
+                          </button>
+                          <button
+                            onclick='copyText(`id="form-wrap"`, this)'
+                            class="btn-getInfo"
+                          >
+                            Получить id
+                          </button>
+                          <button
+                            onclick="copyText(scriptScroll1, this)"
+                            class="btn-getInfo"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!--  -->
+            <!--SS  -->
+            <div class="ss-information none">
+              <div class="title__special-information">
+                <h1 style="font-size: 36px">Информация SS:</h1>
+                <div class="moscow-time"></div>
+              </div>
+              <br />
+              <ul class="list__special-info">
+                <li class="item__special-info">
+                  <h2 class="title__special-info" onclick="showInfo(this)">
+                    - Сылки <span class="arrow-down"></span>
+                  </h2>
+                  <div class="special-info none">
+                    <div class="rule">
+                      <div>
+                        <p>
+                          <strong
+                            >Во всех &lt;a&gt; нужно прописать атрибут
+                            href="&lt;?=$offerUrl?&gt;"</strong
+                          >
+                          <br />
+                          <strong>Если есть скрол - убираем</strong>
+                          <br /><br />
+                          Если надо, чтобы ссылка вставленная в атрибут href
+                          переходила куда надо, а не на оффер, то добавляем тегу
+                          &lt;a&gt; этот класс: <br />
+                          class="exclude-integration" <br /><br />
+                          Если у тега &lt;a&gt; уже есть класс, добавляем к
+                          классу так: <br />
+                          class="other exclude-integration"
+                        </p>
+                        <div class="images-rule">
+                          <img
+                            onclick="showImg(this)"
+                            class="img-rule"
+                            src="images/form.png"
+                            alt="#"
+                          />
+                          <img
+                            onclick="showImg(this)"
+                            class="img-rule"
+                            src="images/form2.png"
+                            alt="#"
+                          />
+                        </div>
+                      </div>
+                      <hr />
+                      <div>
+                        <p></p>
+                        <div class="buttons-rule">
+                          <button
+                            onclick='copyText(`action="../~@replacingTheContentsThis_successful" method="POST"`, this)'
+                            class="btn-getInfo"
+                          >
+                            Получить
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!--  -->
+            <!-- scripts -->
+            <div class="scripts-information none">
+              <div class="title__special-information">
+                <h1 style="font-size: 36px">Информация SCRIPTS:</h1>
+                <div class="moscow-time"></div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+
+          <div class="general-information container-main">
+            <h2 style="font-size: 28px">Общая информация:</h2>
+            <ul class="list__general-info">
+              <li class="item__general-info">
+                <div class="rule">
+                  <div>
+                    <p>
+                      <strong>Всегда нужно проверять:</strong> <br />
+                      - название офера по всей прокле<br />
+                      - фото офера<br />
+                      - новую/старую цену и валюту<br />
+                      - страну и код страны в форме (если есть) <br />
+                      - убирать base в head (бывает он мешает правильно
+                      редактировать файл) <br />
+                      - проверить ссылку на политику конфеденциальности (никуда
+                      не должна вести) <br />
+                      - Все файлы css, img, js скачиваем и храним локально!
+                      (иногда максимум можно cdn подключать) <br />
+                      <br /><br />
+                      <strong>Перед сдачей проклы в тетс проверять:</strong>
+                      <br />
+                      - название офера (лучше по поиску в браузере, в коде можно
+                      пропустить) <br />
+                      - фото офера <br />
+                      - стоит проверять, чтобы в прокле у врача было одно имя
+                      (бывают косяки) <br />
+                      - адаптив на мобилках/планшетах <br />
+                    </p>
+                    <div class="images-rule">
+                      <img
+                        onclick="showImg(this)"
+                        class="img-rule"
+                        src="images/costs.png"
+                        alt="#"
+                      />
+                      <img
+                        onclick="showImg(this)"
+                        class="img-rule"
+                        src="images/searchOfer.png"
+                        alt="#"
+                      />
+                      <img
+                        onclick="showImg(this)"
+                        class="img-rule"
+                        src="images/oferImg.png"
+                        alt="#"
+                      />
+                    </div>
+                  </div>
+                  <hr />
+                  <div>
+                    <p></p>
+                    <div class="buttons-rule">
+                      <button
+                        style="background-color: rgb(73, 168, 73)"
+                        onclick="showSalut()"
+                        class="btn-getInfo"
+                      >
+                        Понял
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="choose-show-song">
+              <p>Включить уведомления?</p>
+              <input
+                onchange="checkCheckbox()"
+                id="checkboxSong"
+                type="checkbox"
+                value="true"
+                checked
+              />
+            </div>
+            <div class="choose-song none">
+              <p>Выберите звук:</p>
+              <select id="songs">
+                <option value="work">work</option>
+                <option value="peredayPrivet">peredayPrivet</option>
+                <option value="polskiSong">polskiSong</option>
+                <option value="run">run</option>
+                <option value="goodSong">goodSong</option>
+              </select>
+              <button
+                style="width: 40px; padding: 5px"
+                class="btn-getInfo"
+                onclick="testSong()"
+              >
+                test
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

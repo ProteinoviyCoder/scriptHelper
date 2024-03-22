@@ -1,0 +1,364 @@
+/* Общая настройка */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(224, 219, 219);
+  background-color: rgb(29, 28, 28);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Классы идущие +/- по порядку вёрстки */
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.nav {
+  width: 100%;
+  background-color: rgb(21, 20, 20);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 0 5px 5px rgba(1, 1, 1, 0.7);
+  padding: 10px;
+}
+.nav-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-content img {
+  width: 60px;
+  border-radius: 100px;
+  margin-right: 30px;
+}
+
+.header-list {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.item__header-list {
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.4s ease;
+  user-select: none;
+}
+.item__header-list-active {
+  border: 1px solid rgb(224, 219, 219);
+  transition: 0.4s ease;
+  border-radius: 10px;
+}
+
+@media (hover: hover) {
+  .item__header-list:hover {
+    background-color: rgb(36, 36, 36);
+    transition: 0.4s ease;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+.header-list img {
+  width: 70px;
+}
+
+.main {
+  margin-top: 100px;
+}
+
+.container-main {
+  background-color: rgb(21, 20, 20);
+  padding: 10px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.title__special-information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item__special-info {
+  transition: 0.4s ease;
+  margin-bottom: 10px;
+  padding: 0 10px 10px;
+}
+
+.item__special-info-active {
+  background-color: rgb(29, 28, 28);
+  border-radius: 10px;
+  padding: 0 10px 10px;
+  margin-bottom: 15px;
+}
+
+.title__special-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.4s;
+  padding: 5px;
+  border-radius: 10px;
+}
+@media (hover: hover) {
+  .title__special-info:hover {
+    background-color: rgb(29, 28, 28);
+    padding-left: 30px;
+    transition: 0.4s;
+  }
+}
+
+.rule {
+  background-color: rgb(21, 20, 20);
+  border-radius: 10px;
+  padding: 5px;
+}
+.rule div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 25px;
+  margin: 5px 0;
+}
+.rule div.images-rule {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.rule div p {
+  width: 100%;
+  min-width: 200px;
+  padding-left: 5px;
+}
+
+.images-rule {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.img-rule {
+  width: 100%;
+  min-width: 400px;
+  max-width: 400px;
+  transition: 0.2s ease;
+  cursor: pointer;
+  border: 5px solid rgba(61, 127, 233, 0);
+}
+@media (hover: hover) {
+  .img-rule:hover {
+    border: 5px solid rgb(61, 127, 233);
+    border-radius: 10px;
+    transition: 0.2s ease;
+    transform: scale(0.97);
+  }
+}
+
+.general-information {
+  margin-bottom: 100px;
+}
+
+.list__general-info {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.item__general-info {
+  background-color: rgb(29, 28, 28);
+  padding: 20px 15px;
+  border-radius: 10px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(21, 20, 20);
+  padding: 25px 10px;
+  border-radius: 10px;
+  z-index: 1;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.choose-show-song {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.choose-song {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+select {
+  border: none;
+  padding: 5px 10px;
+  outline: none;
+  background-color: rgb(49, 49, 49);
+  color: rgb(224, 219, 219);
+}
+select:hover {
+  border: none;
+  padding: 5px 10px;
+  outline: none;
+  background-color: rgb(49, 49, 49);
+  color: rgb(224, 219, 219);
+}
+/* Вспомогательные классы или классы встречающиеся по всему проекту */
+.moscow-time {
+  font-size: 20px;
+}
+.btn-getInfo {
+  background-color: rgb(61, 127, 233);
+  color: rgb(224, 219, 219);
+  padding: 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: 0.4s ease;
+  width: 150px;
+}
+@media (hover: hover) {
+  .btn-getInfo:hover {
+    box-shadow: 0 0 2px 2px rgba(175, 173, 173, 0.2);
+    transition: 0.2s ease;
+    transform: scale(1.03);
+  }
+}
+.btn-getInfo-click {
+  transform: scale(0.9) !important;
+  transition: 0.4s ease;
+}
+
+.link {
+  text-decoration: underline;
+  color: rgb(247, 100, 80);
+}
+.link:hover {
+  color: rgb(191, 69, 53);
+}
+
+.show-img {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(1, 1, 1, 0.7);
+  cursor: pointer;
+  z-index: 2;
+}
+.arrow-down {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid rgb(224, 219, 219);
+  border-right: 3px solid rgb(224, 219, 219);
+  transform: rotate(135deg);
+  margin-left: 10px;
+  transition: 0.4s ease;
+}
+.arrow-up {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid rgb(224, 219, 219);
+  border-right: 3px solid rgb(224, 219, 219);
+  transform: rotate(-45deg);
+  margin-left: 10px;
+  transition: 0.4s ease;
+  margin-top: 10px;
+}
+hr {
+  margin: 15px 0;
+  border: 1px solid rgba(224, 219, 219, 0.3);
+}
+.word-break {
+  word-break: break-all;
+}
+
+.salut {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+.none {
+  display: none;
+}
+
+/* Адаптив */
+@media (max-width: 1000px) {
+  .salut img {
+    width: 80%;
+  }
+  .title__special-information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .rule div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .rule div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .rule div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .rule div:last-child img,
+  .img-rule {
+    min-width: 200px;
+  }
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+}
