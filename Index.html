@@ -4,8 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/logo&seting.css" />
+    <link rel="icon" href="images/logo.jpg" />
     <script src="js/main.js" defer></script>
     <script src="js/time&song.js" defer></script>
+    <script src="js/logo&setings.js" defer></script>
+    <script src="js/favoriteScript.js" defer></script>
+    <script src="js/addScript.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
     <title>Document</title>
   </head>
   <body>
@@ -14,11 +24,18 @@
         <nav class="nav">
           <div class="container">
             <div class="nav-content">
-              <img src="images/logo.jpg" alt="#" />
+              <div class="div-logo__header">
+                <img class="logo__header" src="images/logo.jpg" alt="#" />
+                <img
+                  class="img-setting__header"
+                  src="images/setting.png"
+                  alt="#"
+                />
+              </div>
               <ul class="header-list">
+                <li class="item__header-list">SCRIPTS</li>
                 <li class="item__header-list">COD</li>
                 <li class="item__header-list">SS</li>
-                <li class="item__header-list">SCRIPTS</li>
               </ul>
             </div>
           </div>
@@ -29,7 +46,7 @@
         <div class="container">
           <div class="special-information container-main">
             <!--COD  -->
-            <div class="cod-information">
+            <div class="cod-information none">
               <div class="title__special-information">
                 <h1 style="font-size: 36px">Информация COD:</h1>
                 <div class="moscow-time"></div>
@@ -74,7 +91,7 @@
                       </div>
                       <hr />
                       <div>
-                        <p></p>
+                        <p class="help-buttons-rule"></p>
                         <div class="buttons-rule">
                           <button
                             onclick='copyText(`action="../~@replacingTheContentsThis_successful" method="POST"`, this)'
@@ -161,8 +178,14 @@
                       </div>
                       <hr />
                       <div>
-                        <p></p>
+                        <p class="help-buttons-rule"></p>
                         <div class="buttons-rule">
+                          <button
+                            onclick="copyText(jQueryCDN, this)"
+                            class="btn-getInfo"
+                          >
+                            Получить jQuery
+                          </button>
                           <button
                             onclick='copyText(` required="required" name="name" `, this)'
                             class="btn-getInfo"
@@ -262,8 +285,14 @@
                       </div>
                       <hr />
                       <div>
-                        <p></p>
+                        <p class="help-buttons-rule"></p>
                         <div class="buttons-rule">
+                          <button
+                            onclick="copyText(jQueryCDN, this)"
+                            class="btn-getInfo"
+                          >
+                            Получить jQuery
+                          </button>
                           <button
                             onclick='copyText(`href="#form-wrap"`, this)'
                             class="btn-getInfo"
@@ -338,13 +367,13 @@
                       </div>
                       <hr />
                       <div>
-                        <p></p>
+                        <p class="help-buttons-rule"></p>
                         <div class="buttons-rule">
                           <button
-                            onclick='copyText(`action="../~@replacingTheContentsThis_successful" method="POST"`, this)'
+                            onclick="copyText(`<?=$offerUrl?>`, this)"
                             class="btn-getInfo"
                           >
-                            Получить
+                            Получить &lt;?=$offerUrl?&gt;
                           </button>
                         </div>
                       </div>
@@ -355,10 +384,326 @@
             </div>
             <!--  -->
             <!-- scripts -->
-            <div class="scripts-information none">
-              <div class="title__special-information">
-                <h1 style="font-size: 36px">Информация SCRIPTS:</h1>
-                <div class="moscow-time"></div>
+            <div class="scripts-information">
+              <div class="control-panel__script">
+                <div class="title__special-information">
+                  <h1 style="font-size: 36px">Информация SCRIPTS:</h1>
+                  <div class="moscow-time"></div>
+                </div>
+                <div class="section-personal-scripts">
+                  <ul class="list__special-info">
+                    <li
+                      style="
+                        box-shadow: 0 0 0 0;
+                        margin-top: 20px;
+                        margin-bottom: 0px;
+                      "
+                      class="item__special-info"
+                    >
+                      <h2 class="title__special-info" onclick="showInfo(this)">
+                        - Мои скрипты <span class="arrow-down"></span>
+                      </h2>
+                      <div class="special-info none">
+                        <div class="add-personal-script">
+                          <button
+                            style="background-color: rgb(73, 168, 73)"
+                            class="btn-getInfo"
+                            onclick="addScript()"
+                          >
+                            Добавить скрипт
+                          </button>
+                        </div>
+                        <div class="personal-script"></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="selector__script-notebook">
+                  <button class="active-btn-selector__script-notebook">
+                    Scripts
+                  </button>
+                  <button>Блокнот</button>
+                </div>
+              </div>
+              <div class="section-script">
+                <br />
+                <ul class="list__special-info-script">
+                  <li class="item__special-info item__special-info-active">
+                    <div class="title-star-script">
+                      <h2 style="padding: 5px">Скрипты scroll:</h2>
+                      <!-- far если хоти прозрачную звезду с контуром -->
+                      <!-- fas если хоти звезду с белым фоном -->
+                      <i class="far fa-star"></i>
+                    </div>
+                    <div class="choose-script" onload="changeScript(this)">
+                      <button class="version-script version-script-active">
+                        v1
+                      </button>
+                      <button class="version-script">v2</button>
+                      <button class="version-script">v3</button>
+                    </div>
+                    <div class="special-info">
+                      <div class="script">
+                        <p class="script__text">
+                          Скрипт на скролл с jQuery: <br /><br />
+                          Последнему тегу &lt;form&gt; прописываем
+                          id="form-wrap"<br />
+                          Всем тегам &lt;a&gt; прописываем href="#form-wrap"
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(jQueryCDN, this)"
+                          >
+                            Получить jQuery
+                          </button>
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptScroll1, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                      <div class="script none">
+                        <p class="script__text">
+                          Скрипт на скролл ванила JS: <br /><br />
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptScroll2, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                      <div class="script none">
+                        <p class="script__text">
+                          Скрипт на скролл ванила JS v2.0: <br /><br />
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptScroll3, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item__special-info item__special-info-active">
+                    <div class="title-star-script">
+                      <h2 style="padding: 5px">Скрипты валидация:</h2>
+                      <!-- far если хоти прозрачную звезду с контуром -->
+                      <!-- fas если хоти звезду с белым фоном -->
+                      <i class="far fa-star"></i>
+                    </div>
+                    <div class="choose-script" onload="changeScript(this)">
+                      <button class="version-script version-script-active">
+                        v1
+                      </button>
+                      <button class="version-script">v2</button>
+                    </div>
+                    <div class="special-info">
+                      <div class="script">
+                        <p class="script__text">
+                          Скрипт валидация на jQuery: <br /><br />
+                          Тегу &lt;input&gt; для имени, прописываем класс
+                          class="ss" <br />
+                          Тегу &lt;input&gt; для телефона, прописываем класс
+                          class="pp"
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(jQueryCDN, this)"
+                          >
+                            Получить jQuery
+                          </button>
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptValid, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                      <div class="script none">
+                        <p class="script__text">
+                          Скрипт валидация на jQuery с авто-вводом кода
+                          телефона: <br /><br />
+                          Тегу &lt;input&gt; для имени, прописываем класс
+                          class="ss" <br />
+                          Тегу &lt;input&gt; для телефона, прописываем класс
+                          class="pp" <br />
+                          Меняем в скрипет +90 на нужное значение
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(jQueryCDN, this)"
+                          >
+                            Получить jQuery
+                          </button>
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptValid2, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item__special-info item__special-info-active">
+                    <div class="title-star-script">
+                      <h2 style="padding: 5px">Скрипты на дату:</h2>
+                      <!-- far если хоти прозрачную звезду с контуром -->
+                      <!-- fas если хоти звезду с белым фоном -->
+                      <i class="far fa-star"></i>
+                    </div>
+                    <div class="choose-script" onload="changeScript(this)">
+                      <button class="version-script version-script-active">
+                        v1
+                      </button>
+                      <button class="version-script">v2</button>
+                      <button class="version-script">v3</button>
+                    </div>
+                    <div class="special-info">
+                      <div class="script">
+                        <p class="script__text">
+                          Скрипт ванила JS на текущую дату, в формате
+                          "24.03.2024": <br /><br />
+                          Внутрь всех элементов с классом "date-now" будет
+                          вписана текущая дата в формате "24.03.2024"
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptDate1, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                      <div class="script none">
+                        <p class="script__text">
+                          Скрипт ванила JS на текущую дату, в формате "January
+                          22, 2024": <br /><br />
+                          Внутрь всех элементов с классом "date-now" будет
+                          вписана текущая дата в формате "January 22, 2024"
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptDate2, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                      <div class="script none">
+                        <p class="script__text">
+                          Скрипт ванила JS на текущую и предыдущие даты, в
+                          формате "24.03.2024": <br /><br />
+                          Внутрь всех элементов с соответствующим классом будет
+                          вставлена соответствующая дата в формате "24.03.2024"
+                          <br />
+                          <br />
+                          "date-0" - текущая дата <br />
+                          "date-1" - вчерашняя дата <br />
+                          "date-2" - позавчерашняя дата <br />
+                          "date-3" - поза-позавчерашняя дата <br />
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(scriptDate3, this)"
+                          >
+                            Получить script
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item__special-info item__special-info-active">
+                    <div class="title-star-script">
+                      <h2 style="padding: 5px">Font-awesome CDN:</h2>
+                      <!-- far если хоти прозрачную звезду с контуром -->
+                      <!-- fas если хоти звезду с белым фоном -->
+                      <i class="far fa-star"></i>
+                    </div>
+                    <div class="choose-script" onload="changeScript(this)">
+                      <button class="version-script version-script-active">
+                        v1
+                      </button>
+                    </div>
+                    <div class="special-info">
+                      <div class="script">
+                        <p class="script__text">
+                          Просто вставить ссылку для подключения font-awesome по
+                          CDN в конец тега &lt;head&gt;
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(fontAwesome, this)"
+                          >
+                            Получить font-awesome
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item__special-info item__special-info-active">
+                    <div class="title-star-script">
+                      <h2 style="padding: 5px">Скрипты на таймер:</h2>
+                      <!-- far если хоти прозрачную звезду с контуром -->
+                      <!-- fas если хоти звезду с белым фоном -->
+                      <i class="far fa-star"></i>
+                    </div>
+                    <div class="choose-script" onload="changeScript(this)">
+                      <button class="version-script version-script-active">
+                        v1
+                      </button>
+                    </div>
+                    <div class="special-info">
+                      <div class="script">
+                        <p class="script__text">
+                          Скрипт для таймера на 60 минут, всем тегам с классом
+                          "my-timer-now"
+                        </p>
+                        <hr />
+                        <div class="script__buttons">
+                          <button
+                            class="btn-getInfo"
+                            onclick="copyText(timer60min, this)"
+                          >
+                            Получить timer
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="section-notebook none">
+                <textarea
+                  id="notebook"
+                  class="notebook"
+                  oninput="autoResize(this)"
+                ></textarea>
               </div>
             </div>
             <!--  -->
@@ -415,7 +760,7 @@
                   </div>
                   <hr />
                   <div>
-                    <p></p>
+                    <p class="help-buttons-rule"></p>
                     <div class="buttons-rule">
                       <button
                         style="background-color: rgb(73, 168, 73)"
@@ -432,18 +777,13 @@
           </div>
         </div>
       </main>
+
       <footer class="footer">
         <div class="container">
           <div class="footer-content">
             <div class="choose-show-song">
               <p>Включить уведомления?</p>
-              <input
-                onchange="checkCheckbox()"
-                id="checkboxSong"
-                type="checkbox"
-                value="true"
-                checked
-              />
+              <input id="checkboxSong" type="checkbox" />
             </div>
             <div class="choose-song none">
               <p>Выберите звук:</p>

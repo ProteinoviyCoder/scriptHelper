@@ -1,74 +1,93 @@
 const checkbox = document.querySelector("#checkboxSong");
-let song;
+const songs = document.querySelector("#songs");
+let song = songs.options[songs.selectedIndex].textContent;
+
+let timeNotification;
+let audioElements = [];
 
 //Проверяем включены ли уведомления. Включаем/выключаем уведомления
 let checkboxFlag;
 if (localStorage.getItem("checkboxFlag") !== null) {
   checkboxFlag = localStorage.getItem("checkboxFlag");
+  if (checkboxFlag === "true") {
+    checkbox.checked = true;
+    document.querySelector("#songs").parentNode.classList.remove("none");
+  } else if (checkboxFlag === "false") {
+    checkbox.checked = false;
+    document.querySelector("#songs").parentNode.classList.add("none");
+  }
 } else {
   checkboxFlag = "true";
-}
-if (checkboxFlag === "false") {
-  checkbox.checked = false;
-} else {
   checkbox.checked = true;
+  document.querySelector("#songs").parentNode.classList.remove("none");
+  localStorage.setItem("checkboxFlag", "true");
 }
-function checkCheckbox() {
-  if (checkbox.checked) {
-    document.querySelector("#songs").parentNode.classList.remove("none");
-    localStorage.setItem("checkboxFlag", "true");
-  } else {
-    document.querySelector("#songs").parentNode.classList.add("none");
+
+checkbox.addEventListener("change", function () {
+  document.querySelector("#songs").parentNode.classList.toggle("none");
+  if (checkboxFlag === "true") {
+    checkboxFlag = "false";
+    checkbox.checked = false;
     localStorage.setItem("checkboxFlag", "false");
+    if (localStorage.getItem("song") !== null) {
+      songs.selectedIndex = [localStorage.getItem("song")];
+      song = songs.options[songs.selectedIndex].textContent;
+    }
+  } else if (checkboxFlag === "false") {
+    checkboxFlag = "true";
+    checkbox.checked = true;
+    localStorage.setItem("checkboxFlag", "true");
+    if (localStorage.getItem("song") !== null) {
+      songs.selectedIndex = [localStorage.getItem("song")];
+      song = songs.options[songs.selectedIndex].textContent;
+    }
   }
-}
-checkCheckbox();
+});
+
 //--------------------------------------------------------------------
 
 //Проверяем песню, если уведомления включены
-if (localStorage.getItem("checkboxFlag") === "true") {
-  let audioElements = [];
-  const songs = document.querySelector("#songs");
+if (checkboxFlag === "true") {
   if (localStorage.getItem("song") !== null) {
     songs.selectedIndex = [localStorage.getItem("song")];
   }
   song = songs.options[songs.selectedIndex].textContent;
-  songs.addEventListener("change", function () {
-    localStorage.setItem("song", songs.selectedIndex);
-    song = songs.options[songs.selectedIndex].textContent;
-  });
+}
+songs.addEventListener("change", function () {
+  localStorage.setItem("song", songs.selectedIndex);
+  song = songs.options[songs.selectedIndex].textContent;
+});
 
-  function testSong() {
+function testSong() {
+  audioElements.forEach((audioElements) => {
+    audioElements.pause();
+  });
+  audioElements = [];
+  audio = new Audio(`./audio/${song}.mp3`);
+  audio.play();
+  audioElements.push(audio);
+
+  const div = document.createElement("div");
+  div.classList.add("show-img");
+  div.addEventListener("click", () => {
+    div.remove();
     audioElements.forEach((audioElements) => {
       audioElements.pause();
     });
     audioElements = [];
-    audio = new Audio(`./audio/${song}.mp3`);
-    audio.play();
-    audioElements.push(audio);
+  });
 
-    const div = document.createElement("div");
-    div.classList.add("show-img");
-    div.addEventListener("click", () => {
-      div.remove();
-      audioElements.forEach((audioElements) => {
-        audioElements.pause();
-      });
-      audioElements = [];
-    });
+  const text = document.createElement("p");
+  text.textContent = "Время созвона!";
+  text.style.padding = "30px";
+  text.style.backgroundColor = "rgb(21, 20, 20)";
+  text.style.borderRadius = "10px";
+  text.style.width = "70%";
+  text.style.textAlign = "center";
+  text.style.fontSize = "48px";
 
-    const text = document.createElement("p");
-    text.textContent = "Время созвона!";
-    text.style.padding = "30px";
-    text.style.backgroundColor = "rgb(21, 20, 20)";
-    text.style.borderRadius = "10px";
-    text.style.width = "70%";
-    text.style.textAlign = "center";
-    text.style.fontSize = "48px";
-
-    div.append(text);
-    document.body.append(div);
-  }
+  div.append(text);
+  document.body.append(div);
 }
 
 function updateCurrentTime() {
@@ -108,9 +127,26 @@ function updateCurrentTime() {
   for (let i of palacesTime) {
     i.textContent = currentDayOfWeek + " " + timeString;
   }
-  if (timeString === "12:55" && checkboxFlag === "true") {
-    testSong();
-  } else if (
+
+  if (localStorage.getItem("timeEvents") !== null) {
+    timeNotification = JSON.parse(localStorage.getItem("timeEvents"));
+    if (
+      timeNotification.includes(timeString) === true &&
+      checkboxFlag === "true"
+    ) {
+      testSong();
+    } else {
+      return;
+    }
+  } else {
+    if (timeString === "12:55:00" && checkboxFlag === "true") {
+      testSong();
+    } else {
+      return;
+    }
+  }
+
+  if (
     (currentDayOfWeek === "Пятница" &&
       timeString === "16:25:00" &&
       checkboxFlag === "true") ||

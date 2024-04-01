@@ -1,0 +1,148 @@
+/* тут про логотип */
+.div-logo__header {
+  position: relative;
+  margin-right: 30px;
+  padding: 2px;
+  cursor: pointer;
+  width: 60px;
+  height: 50px;
+  user-select: none;
+}
+
+.logo__header {
+  width: 60px;
+  border-radius: 100px;
+  transition: 0.7s ease;
+  z-index: 300;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  z-index: 2;
+}
+
+.img-setting__header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 5px;
+  width: 40px;
+  z-index: 1;
+  transition: 0.3s ease;
+}
+.img-setting__header:hover {
+  transition: 0.3s ease;
+  transform: scale(0.9);
+}
+
+/* тут про окно с настройками */
+.background-setting-window {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(1, 1, 1, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  cursor: pointer;
+}
+.setting-window {
+  min-width: 260px;
+  min-height: 200px;
+  width: 70%;
+  max-height: 80%;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: rgb(21, 20, 20);
+  cursor: default;
+  border: 8px solid rgb(21, 20, 20);
+  border-radius: 10px;
+}
+
+.header__seting-window {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.div-header1__seting-window {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+.div-header1__seting-window p:nth-child(1) {
+  width: 15px;
+  height: 15px;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-radius: 3px;
+  transform: rotate(-45deg);
+  transition: 0.3s ease;
+}
+.div-header1__seting-window p:nth-child(2) {
+  width: 20px;
+  border-top: 3px solid white;
+  transform: translateX(-13.5px);
+  border-radius: 3px;
+  transition: 0.3s ease;
+}
+.div-header2__seting-window {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.div-header2__seting-window p:nth-child(1) {
+  height: 25px;
+  border-left: 3px solid white;
+  border-radius: 3px;
+  transform: rotate(40deg);
+  transition: 0.3s ease;
+}
+.div-header2__seting-window p:nth-child(2) {
+  height: 25px;
+  border-left: 3px solid white;
+  border-radius: 3px;
+  transform: rotate(-40deg) translateX(-2px) translateY(-1.8px);
+  transition: 0.3s ease;
+}
+.our-time-event {
+  font-size: 24px;
+}
+
+.notification-time {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+.btn-event-time {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: brown;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+.btn-event-time:hover {
+  color: brown;
+  background-color: white;
+  transition: 0.3s ease;
+}
+
+/* Классы добовляемые для анимаций */
+.move-logo {
+  transition: 0.7s ease;
+  transform: rotate(120deg) translateX(20px) translateY(30px);
+}
